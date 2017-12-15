@@ -1,14 +1,16 @@
-Summary:    Adobe Flash Player 11
+%define debug_package %{nil}
+
+Summary:    Adobe Flash Player 27
 Name:       flash-plugin
-Version:    11.2.202.400
-Release:    1.R
+Version:    28.0.0.126
+Release:    1%{?dist}
 Epoch:      7
 
 Group:      Applications/Internet
 License:    Proprietary
 URL:        http://www.adobe.com
-Source0:    http://fpdownload.macromedia.com/get/flashplayer/pdc/%{version}/install_flash_player_11_linux.i386.tar.gz
-Source1:    http://fpdownload.macromedia.com/get/flashplayer/pdc/%{version}/install_flash_player_11_linux.x86_64.tar.gz
+Source0:    https://fpdownload.adobe.com/pub/flashplayer/pdc/%{version}/flash_player_npapi_linux.i386.tar.gz
+Source1:    https://fpdownload.adobe.com/pub/flashplayer/pdc/%{version}/flash_player_npapi_linux.x86_64.tar.gz
 
 Provides:   flash-plugin-meta
 AutoReq:    on
@@ -51,7 +53,12 @@ tar xzf %{SOURCE0}
 %endif
 mv libflashplayer.so %{buildroot}%{_libdir}/mozilla/plugins/
 
-rm -f %{buildroot}/readme.txt
+mkdir -p %{buildroot}%{_pkgdocdir}
+mv %{buildroot}/readme.txt %{buildroot}%{_pkgdocdir}/
+mv %{buildroot}/license.pdf %{buildroot}%{_pkgdocdir}/
+mv %{buildroot}/LGPL/LGPL.txt %{buildroot}%{_pkgdocdir}/
+mv %{buildroot}/LGPL/notice.txt %{buildroot}%{_pkgdocdir}/
+rmdir %{buildroot}/LGPL/
 
 %ifarch x86_64
 rm -rf %{buildroot}/usr/lib/kde4/
@@ -86,6 +93,11 @@ rm -rf %{buildroot}
 %{_datadir}/applications/*.desktop
 %{_datadir}/icons/hicolor/*/apps/flash-player-properties.png
 %{_datadir}/pixmaps/flash-player-properties.png
+%docdir %{_pkgdocdir}
+%doc %{_pkgdocdir}/readme.txt
+%doc %{_pkgdocdir}/license.pdf
+%doc %{_pkgdocdir}/LGPL.txt
+%doc %{_pkgdocdir}/notice.txt
 
 %files kde
 %defattr(-, root, root, -)
@@ -94,6 +106,157 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Thu Dec 14 2017 VSE NN <metanoite@rambler.ru> - 7:28.0.0.126-1
+- update to 28.0.0.126
+
+* Thu Nov 16 2017 VSE NN <metanoite@rambler.ru> - 7:27.0.0.187-1
+- update to 27.0.0.187
+
+* Mon Nov 06 2017 VSE NN <metanoite@rambler.ru> - 7:27.0.0.183-1
+- update to 27.0.0.183
+
+* Sat Oct 21 2017 VSE NN <metanoite@rambler.ru> - 7:27.0.0.170-1
+- update to 27.0.0.170
+
+* Thu Oct 12 2017 VSE NN <metanoite@rambler.ru> - 7:27.0.0.159-1
+- update to 27.0.0.159
+
+* Tue Sep 12 2017 VSE NN <metanoite@rambler.ru> - 7:27.0.0.130-1
+- update to 27.0.0.130
+
+* Wed Aug 09 2017 VSE NN <metanoite@rambler.ru> - 7:26.0.0.151-1
+- update to 26.0.0.151
+
+* Fri Jul 14 2017 VSE NN <metanoite@rambler.ru> - 7:26.0.0.137-1
+- update to 26.0.0.137
+
+* Wed Jun 21 2017 VSE NN <metanoite@rambler.ru> - 7:26.0.0.131-1
+- update to 26.0.0.131
+
+* Wed Jun 14 2017 VSE NN <metanoite@rambler.ru> - 7:26.0.0.126-1
+- update to 26.0.0.126
+
+* Fri May 26 2017 VSE NN <metanoite@rambler.ru> 7:25.0.0.171-2
+- replace erroneous source archives from the previous 25.0.0.148
+  version by the actual 25.0.0.171 ones
+
+* Mon May 15 2017 VSE NN <metanoite@rambler.ru> 7:25.0.0.171-1
+- update to 25.0.0.171
+
+* Wed Apr 12 2017 VSE NN <metanoite@rambler.ru> 7:25.0.0.148-1
+- update to 25.0.0.148
+
+* Thu Mar 16 2017 VSE NN <metanoite@rambler.ru> 7:25.0.0.127-1
+- update to 25.0.0.127
+
+* Wed Feb 15 2017 VSE NN <metanoite@rambler.ru> 7:24.0.0.221-1
+- update to 24.0.0.221
+
+* Sun Jan 15 2017 VSE NN <metanoite@rambler.ru> 7:24.0.0.194-1
+- update to 24.0.0.194
+
+* Thu Dec 22 2016 VSE NN <metanoite@rambler.ru> 7:24.0.0.186-1
+- update to 24.0.0.186
+
+* Fri Nov 11 2016 VSE NN <metanoite@rambler.ru> 7:11.2.202.644-1
+- update to 11.2.202.644
+
+* Wed Nov 02 2016 VSE NN <metanoite@rambler.ru> 7:11.2.202.643-1
+- update to 11.2.202.643
+
+* Thu Oct 20 2016 VSE NN <metanoite@rambler.ru> 7:11.2.202.637-1
+- update to 11.2.202.637
+
+* Sat Sep 17 2016 VSE NN <metanoite@rambler.ru> 7:11.2.202.635-1
+- update to 11.2.202.635
+
+* Wed Jul 20 2016 VSE NN <metanoite@rambler.ru> 7:11.2.202.632-1
+- update to 11.2.202.632
+
+* Sat Jun 18 2016 VSE NN <metanoite@rambler.ru> 7:11.2.202.626-1
+- update to 11.2.202.626
+
+* Sun May 15 2016 VSE NN <metanoite@rambler.ru> 7:11.2.202.621-1
+- update to 11.2.202.621
+
+* Mon Apr 11 2016 VSE NN <metanoite@rambler.ru> 7:11.2.202.616-1
+- update to 11.2.202.616
+
+* Fri Mar 11 2016 Arkady L. Shane <ashejn@russianfedora.pro> 7:11.2.202.577-1.R
+- update to 11.2.202.577
+
+* Wed Feb 10 2016 VSE NN <metanoite@rambler.ru> 7:11.2.202.569-1
+- update to 11.2.202.569
+
+* Tue Jan 26 2016 VSE NN <metanoite@rambler.ru> 7:11.2.202.559-1
+- update to 11.2.202.559
+
+* Sun Dec 13 2015 VSE NN <metanoite@rambler.ru> 7:11.2.202.554-1
+- update to 11.2.202.554
+
+* Wed Nov 11 2015 VSE NN <metanoite@rambler.ru> 7:11.2.202.548-1
+- update to 11.2.202.548
+
+* Sat Oct 17 2015 VSE NN <metanoite@rambler.ru> 7:11.2.202.540-1
+- update to 11.2.202.540
+
+* Thu Oct 15 2015 VSE NN <metanoite@rambler.ru> 7:11.2.202.535-1
+- update to 11.2.202.535
+
+* Fri Sep 25 2015 VSE NN <metanoite@rambler.ru> 7:11.2.202.521-1
+- update to 11.2.202.521
+
+* Wed Aug 12 2015 VSE NN <metanoite@rambler.ru> 7:11.2.202.508-1
+- update to 11.2.202.508
+
+* Mon Aug 03 2015 VSE NN <metanoite@rambler.ru> 7:11.2.202.491-1
+- update to 11.2.202.491
+
+* Fri Jul 10 2015 VSE NN <metanoite@rambler.ru> 7:11.2.202.481-1
+- update to 11.2.202.481
+
+* Tue Jun 23 2015 VSE NN <metanoite@rambler.ru> 7:11.2.202.468-1
+- update to 11.2.202.468
+
+* Sat Jun 13 2015 VSE NN <metanoite@rambler.ru> 7:11.2.202.466-1
+- update to 11.2.202.466
+
+* Thu May 14 2015 VSE NN <metanoite@rambler.ru> 7:11.2.202.460-1
+- update to 11.2.202.460
+
+* Wed Apr 15 2015 VSE NN <metanoite@rambler.ru> 7:11.2.202.457-1
+- update to 11.2.202.457
+
+* Sun Mar 15 2015 VSE NN <metanoite@rambler.ru> 7:11.2.202.451-1
+- update to 11.2.202.451
+
+* Thu Feb 05 2015 VSE NN <metanoite@rambler.ru> 7:11.2.202.442-1
+- update to 11.2.202.442
+
+* Tue Jan 27 2015 VSE NN <metanoite@rambler.ru> 7:11.2.202.440-1
+- update to 11.2.202.440
+
+* Thu Jan 22 2015 VSE NN <metanoite@rambler.ru> 7:11.2.202.438-1
+- update to 11.2.202.438
+
+* Sat Jan 17 2015 VSE NN <metanoite@rambler.ru> 7:11.2.202.429-1
+- update to 11.2.202.429
+
+* Thu Dec 11 2014 VSE NN <metanoite@rambler.ru> 7:11.2.202.425-1
+- update to 11.2.202.425
+
+* Fri Nov 28 2014 VSE NN <metanoite@rambler.ru> 7:11.2.202.424-1
+- update to 11.2.202.424
+
+* Wed Nov 12 2014 VSE NN <metanoite@rambler.ru> 7:11.2.202.418-1
+- update to 11.2.202.418
+
+* Sat Oct 18 2014 VSE NN <metanoite@rambler.ru> 7:11.2.202.411-1
+- update to 11.2.202.411
+
+* Thu Sep 11 2014 VSE NN <metanoite@rambler.ru> 7:11.2.202.406-1
+- update to 11.2.202.406
+
 * Tue Aug  2 2014 Arkady L. Shane <ashejn@russianfedora.ru> 7:11.2.202.400-1.R
 - update to 11.2.202.400
 
